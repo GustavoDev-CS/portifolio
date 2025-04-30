@@ -188,29 +188,35 @@
                 <!-- Formulário de contato (agora dentro da área do quadrado vermelho) -->
                 <div class="contato-form">
                     <h3>Envie uma Mensagem</h3>
-                    <form id="contact-form" action="https://formspree.io/f/mnndjdly" method="post">
+                    <form id="contact-form" action="https://formspree.io/f/mnndjdly" method="POST">
                         <div class="form-group">
-                            <label for="name">Nome</label>
-                            <input type="text" id="name" name="name" required>
+                          <label for="name">Nome</label>
+                          <input type="text" id="name" name="name" class="form-control" required>
                         </div>
-                        
+                      
                         <div class="form-group">
-                            <label for="email">E-mail</label>
-                            <input type="email" id="email" name="email" required>
+                          <label for="email">E-mail</label>
+                          <input type="email" id="email" name="email" class="form-control" required>
                         </div>
-                        
+                      
                         <div class="form-group">
-                            <label for="subject">Assunto</label>
-                            <input type="text" id="subject" name="subject" required>
+                          <label for="subject">Assunto</label>
+                          <input type="text" id="subject" name="subject" class="form-control" required>
                         </div>
-                        
+                      
                         <div class="form-group">
-                            <label for="message">Mensagem</label>
-                            <textarea id="message" name="message" rows="5" required></textarea>
+                          <label for="message">Mensagem</label>
+                          <textarea id="message" name="message" class="form-control" rows="5" required></textarea>
                         </div>
-                        
-                        <button type="submit" class="btn">Enviar Mensagem</button>
-                    </form>
+                      
+                        <!-- Campo oculto para evitar spam (honeypot) -->
+                        <input type="text" name="_gotcha" style="display: none;">
+                      
+                        <button type="submit" class="btn btn-primary">
+                          <!-- Ícone opcional aqui --> Enviar Mensagem
+                        </button>
+                      </form>
+                      
                 </div>
             </div>
         </div>
