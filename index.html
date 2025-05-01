@@ -147,7 +147,7 @@
         <div class="container">
             <h2 class="section-title">Entre em Contato</h2>
             <div class="contato-container">
-                <!-- Informações de contato (parte superior) -->
+                <!-- Informações de contato (ao lado) -->
                 <div class="contato-info">
                     <h3>Informações de Contato</h3>
                     <p>Estou disponível para oportunidades de estágio, projetos e networking. Entre em contato comigo por qualquer um dos meios abaixo:</p>
@@ -215,24 +215,26 @@
                         <button type="submit" class="btn btn-primary">
                           <!-- Ícone opcional aqui --> Enviar Mensagem
                         </button>
-                      </form>
+                        </form>
                       
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer>
+   <!-- Footer -->
+<footer>
+    <div class="container">
         <div class="social-links">
-    <a href="#"><i class="bi bi-linkedin"></i></a>
-    <a href="#"><i class="bi bi-instagram"></i></a>
-    <a href="#"><i class="bi bi-github"></i></a>
-</div>
-    </footer>
+            <a href="https://www.linkedin.com/in/gustavo-cardoso-970b9a316/"><i class="bi bi-linkedin"></i></a>
+            <a href="https://github.com/GustavoDev-SI"><i class="bi bi-github"></i></a>
+        </div>
+        <p>&copy; 2025 Gustavo Cardoso. Todos os direitos reservados.</p>
+    </div>
+</footer>
 
-    <!-- Back to Top Button -->
-    <div class="back-to-top">↑</div>
+<!-- Back to Top Button -->
+<div class="back-to-top">↑</div>
 
     <!-- JavaScript -->
     <script>
@@ -285,24 +287,33 @@
             });
         });
 
-        // Form Submission
+        // Form Submission usando fetch com Formspree
         const contactForm = document.getElementById('contact-form');
-        
-        contactForm.addEventListener('submit', (e) => {
+
+        contactForm.addEventListener('submit', async (e) => {
             e.preventDefault();
-            
-            // Get form values
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const subject = document.getElementById('subject').value;
-            const message = document.getElementById('message').value;
-            
-            // In a real scenario, you would send this data to a server
-            // For now, we'll just show an alert
-            alert(`Mensagem enviada!\nNome: ${name}\nE-mail: ${email}\nAssunto: ${subject}\nMensagem: ${message}`);
-            
-            // Reset form
-            contactForm.reset();
+
+            const formData = new FormData(contactForm);
+
+            try {
+                const response = await fetch(contactForm.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+
+                if (response.ok) {
+                    alert('Mensagem enviada com sucesso! Obrigado pelo contato.');
+                    contactForm.reset();
+                } else {
+                    alert('Ocorreu um erro ao enviar sua mensagem. Tente novamente mais tarde.');
+                }
+            } catch (error) {
+                alert('Erro ao enviar o formulário. Verifique sua conexão ou tente mais tarde.');
+                console.error('Erro:', error);
+            }
         });
 
         // Animate on Scroll
